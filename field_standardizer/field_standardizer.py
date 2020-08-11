@@ -249,7 +249,7 @@ class FieldStandardizer:
             maxValue = layer.maximumValue(field_index)
             minValue = layer.minimumValue(field_index)
 
-            # Score Range: Benefit (Positive)
+            # Max Score: Benefit (Positive)
             if int(self.dlg.fieldTable.item(row,1).text()) == 1:
 
                 with edit(layer):
@@ -259,7 +259,7 @@ class FieldStandardizer:
                         layer.updateFeature(feature)
 
 
-            # Score Range: Cost (Negative)
+            # Max Score: Cost (Negative)
             elif int(self.dlg.fieldTable.item(row,1).text()) == 2:
 
 
@@ -269,7 +269,7 @@ class FieldStandardizer:
                             1-(feature[field_name]/maxValue))
                         layer.updateFeature(feature)                
 
-            # Max Score: Benefit (Positive)
+            # Score Range: Benefit (Positive)
             elif int(self.dlg.fieldTable.item(row,1).text()) == 3:
 
                 with edit(layer):
@@ -278,7 +278,7 @@ class FieldStandardizer:
                             (feature[field_name]-minValue)/(maxValue-minValue))
                         layer.updateFeature(feature)            
 
-            # Max Score: Cost (Negative)
+            # Score Range: Cost (Negative)
             elif int(self.dlg.fieldTable.item(row,1).text()) == 4:
                 
                 with edit(layer):
