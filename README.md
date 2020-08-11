@@ -7,5 +7,6 @@ they wanted to standardize. The available standardizing options are:
 2. Score Range (cost)
 3. Max Score   (benefit)
 4. Max Score   (cost)
-5. Z-score.
+5. Z-score     (benefit)
+6. Z-score     (cost).
 
