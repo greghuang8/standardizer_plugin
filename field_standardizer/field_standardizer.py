@@ -218,7 +218,7 @@ class FieldStandardizer:
         False and error messages otherwise.
         """
 
-        id_list = [1,2,3,4,5]
+        id_list = [1,2,3,4,5,6]
 
         for row in range(self.dlg.fieldTable.rowCount()):
 
@@ -227,7 +227,7 @@ class FieldStandardizer:
 
             else: 
                 iface.messageBar().pushMessage("Input error",
-                    "Please selected a valid standardization ID [1-5]",
+                    "Please select a valid standardization ID [1-6]",
                     level = Qgis.Critical,
                     duration = 10)
                 return False
@@ -287,7 +287,7 @@ class FieldStandardizer:
                             (maxValue - feature[field_name])/(maxValue-minValue))
                         layer.updateFeature(feature)         
 
-            # Z-score
+            # Z-score: Benefit (Positive)
             elif int(self.dlg.fieldTable.item(row,1).text()) == 5:
 
                 values = []
@@ -301,6 +301,22 @@ class FieldStandardizer:
                     for feature in layer.getFeatures():
                         feature.setAttribute(feature.fieldNameIndex(field_name),
                             (feature[field_name]-field_mean)/field_stdev)
+                        layer.updateFeature(feature)
+
+            # Z-score: Cost (Negative)
+            elif int(self.dlg.fieldTable.item(row,1).text()) == 6:
+
+                values = []
+                for feature in layer.getFeatures():
+                    values.append(feature[field_name])
+
+                field_mean = statistics.mean(values)
+                field_stdev = statistics.stdev(values)
+
+                with edit(layer):
+                    for feature in layer.getFeatures():
+                        feature.setAttribute(feature.fieldNameIndex(field_name),
+                            -(feature[field_name]-field_mean)/field_stdev)
                         layer.updateFeature(feature)
 
     def run(self):
