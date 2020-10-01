@@ -10,3 +10,7 @@ they wanted to standardize. The available standardizing options are:
 5. Z-score     (benefit)
 6. Z-score     (cost).
 
+The plugin's landing page at launch can be seen in standardizer_tool_landing.png
+
+
+© Gregory Huang 2020
